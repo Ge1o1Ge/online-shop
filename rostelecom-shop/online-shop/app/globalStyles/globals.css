@@ -22,6 +22,12 @@ body {
   border: none;
 }
 
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 @font-face {
   font-display: swap;
   font-family: Rostelecom Basis;
