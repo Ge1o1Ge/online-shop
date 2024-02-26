@@ -7,7 +7,7 @@ import { openMenu } from '@/context/modals'
 import { addOverflowHiddenToBody } from '@/lib/utils/common'
 
 const Header = () => {
-  const { lang, tarnslations } = useLang()
+  const { lang, translations } = useLang()
 
   const handleOpenMenu = () => {
     addOverflowHiddenToBody()
@@ -18,7 +18,7 @@ const Header = () => {
     <header className='header'>
       <div className='container header__container'>
         <button className='btn-reset header__burger' onClick={handleOpenMenu}>
-          {tarnslations[lang].header.menu_btn}
+          {translations[lang].header.menu_btn}
         </button>
         <Menu />
         <div className='header__logo'>

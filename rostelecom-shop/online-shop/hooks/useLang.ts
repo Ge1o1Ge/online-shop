@@ -5,6 +5,6 @@ import translationsJSON from '@/public/translations/translations.json'
 
 export const useLang = () => {
   const lang = useUnit($lang)
-  const tarnslations = translationsJSON
-  return { lang, tarnslations }
+  const translations = translationsJSON
+  return { lang, translations }
 }
