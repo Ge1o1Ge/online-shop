@@ -11,8 +11,9 @@ import { useState } from 'react'
 import Accordion from '../Accordion/Accordion'
 import { usePathname } from 'next/navigation'
 import MenuLinkItem from './MenuLinkItem'
-import Link from 'next/link'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import BuyersListItems from './BuyersListItems'
+import ContactsListItems from './ContactsListItems'
 
 const Menu = () => {
   const [showCatalogList, setShowCatalogList] = useState(false)
@@ -141,7 +142,7 @@ const Menu = () => {
         </div>
         <img
           className={`nav-menu__bg ${menuIsOpenSwich}`}
-          src='/img/menu-bg.png'
+          src={`/img/menu-bg${isMedia800 ? '-small' : ''}.png`}
           alt='menu background'
         />
         <button
@@ -257,93 +258,65 @@ const Menu = () => {
                 {translations[lang].main_menu.buyers}
               </button>
             )}
-            <AnimatePresence>
-              {showBuyersList && (
-                <motion.ul
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className='list-reset nav-menu__accordion'
-                >
-                  <li className='nav-menu__accordion__item'>
-                    <Link
-                      href='/about'
-                      className='nav-menu__accordion__item__link nav-menu__accordion__item__title'
-                    >
-                      {translations[lang].main_menu.about}
-                    </Link>
-                  </li>
-                  <li className='nav-menu__accordion__item'>
-                    <Link
-                      href='/blog'
-                      className='nav-menu__accordion__item__link'
-                    >
-                      {translations[lang].main_menu.blog}
-                    </Link>
-                  </li>
-                  <li className='nav-menu__accordion__item'>
-                    <Link
-                      href='/shipping-and-payment'
-                      className='nav-menu__accordion__item__link'
-                    >
-                      {translations[lang].main_menu.shipping}
-                    </Link>
-                  </li>
-                  <li className='nav-menu__accordion__item'>
-                    <Link
-                      href='/purchase-returns'
-                      className='nav-menu__accordion__item__link'
-                    >
-                      {translations[lang].main_menu.returns}
-                    </Link>
-                  </li>
-                </motion.ul>
-              )}
-            </AnimatePresence>
+            {!isMedia640 && (
+              <AnimatePresence>
+                {showBuyersList && (
+                  <motion.ul
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className='list-reset nav-menu__accordion'
+                  >
+                    <BuyersListItems />
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            )}
+            {isMedia640 && (
+              <Accordion
+                title={translations[lang].main_menu.buyers}
+                titleClass='btn-reset nav-menu__list__item__btn'
+              >
+                <ul className='list-reset nav-menu__accordion__item__list'>
+                  <BuyersListItems />
+                </ul>
+              </Accordion>
+            )}
           </li>
           <li className='nav-menu__list__item'>
-            {' '}
-            <button
-              className='btn-reset nav-menu__list__item__btn'
-              onMouseEnter={handleShowContactList}
-            >
-              {translations[lang].main_menu.contacts}
-            </button>
-            <AnimatePresence>
-              {showContactList && (
-                <motion.ul
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className='list-reset nav-menu__accordion'
-                >
-                  <li className='nav-menu__accordion__item'>
-                    <a
-                      href='tel:+74995558293'
-                      className='nav-menu__accordion__item__link nav-menu__accordion__item__title'
-                    >
-                      +7 (499) 555 82 93
-                    </a>
-                  </li>
-                  <li className='nav-menu__accordion__item'>
-                    <a
-                      href='mail:totest@mail.com'
-                      className='nav-menu__accordion__item__link'
-                    >
-                      Email
-                    </a>
-                  </li>
-                  <li className='nav-menu__accordion__item'>
-                    <Link
-                      href='http://t.me/dvejer'
-                      className='nav-menu__accordion__item__link'
-                    >
-                      {translations[lang].main_menu.tg}
-                    </Link>
-                  </li>
-                </motion.ul>
-              )}
-            </AnimatePresence>
+            {!isMedia640 && (
+              <button
+                className='btn-reset nav-menu__list__item__btn'
+                onMouseEnter={handleShowContactList}
+              >
+                {translations[lang].main_menu.contacts}
+              </button>
+            )}
+
+            {!isMedia640 && (
+              <AnimatePresence>
+                {showContactList && (
+                  <motion.ul
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className='list-reset nav-menu__accordion'
+                  >
+                    <ContactsListItems />
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            )}
+            {isMedia640 && (
+              <Accordion
+                title={translations[lang].main_menu.contacts}
+                titleClass='btn-reset nav-menu__list__item__btn'
+              >
+                <ul className='list-reset nav-menu__accordion__item__list'>
+                  <ContactsListItems />
+                </ul>
+              </Accordion>
+            )}
           </li>
         </ul>
       </div>

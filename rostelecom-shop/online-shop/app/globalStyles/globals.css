@@ -8,7 +8,7 @@ body {
   flex-direction: column;
 }
 
-.contaoner {
+.container {
   max-width: 1535px;
   margin: 0 auto;
   padding: 0 15px;

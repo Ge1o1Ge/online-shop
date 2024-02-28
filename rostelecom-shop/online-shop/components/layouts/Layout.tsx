@@ -1,11 +1,19 @@
+'use client'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Header from '../modules/Header/Header'
+import MobileNavBar from '../modules/MobileNavBar/MobileNavBar'
 
-const Layout = ({ children }: { children: React.ReactNode }) => (
-  <>
-    <Header />
-    {children}
-    <div className='' />
-  </>
-)
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  const isMedia800 = useMediaQuery(800)
+
+  return (
+    <>
+      <Header />
+      {children}
+      {isMedia800 && <MobileNavBar />}
+      <div className='' />
+    </>
+  )
+}
 
 export default Layout
