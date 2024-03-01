@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { useStore } from 'effector-react'
@@ -13,6 +12,8 @@ import { $catalogIsOpen, closeCatalogMenu } from '@/context/modals'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import CatalogMenuButton from './CatalogMenuButton'
 import CatalogMenuList from './CatalogMenuList'
+import Accordion from '../Accordion/Accordion'
+import Link from 'next/link'
 
 const CatalogMenu = () => {
   const catalogMenuIsOpen = useStore($catalogIsOpen)
@@ -112,7 +113,7 @@ const CatalogMenu = () => {
         {catalogMenuIsOpen && (
           <motion.aside
             initial={{ width: 0 }}
-            animate={{ width: 'calc(100% - 48px)' }}
+            animate={{ width: '100%' }}
             exit={{ width: 0, transition: { delay: 0.7, duration: 0.3 } }}
             className='catalog-menu__aside'
           >
@@ -126,11 +127,6 @@ const CatalogMenu = () => {
               exit='closed'
               variants={sideVariants}
             >
-              <img
-                className='catalog-menu__bg'
-                src='/img/menu-bg-small.png'
-                alt='menu bacground'
-              />
               <motion.button
                 className='btn-reset catalog-menu__close'
                 variants={itemVariants}
@@ -200,6 +196,28 @@ const CatalogMenu = () => {
                             <CatalogMenuList items={items} />
                           )}
                         </AnimatePresence>
+                      )}
+                      {isMedia450 && (
+                        <Accordion
+                          title={name}
+                          titleClass='btn-reset nav-menu__accordion__item__title'
+                        >
+                          <ul className='list-reset catalog__accordion__list'>
+                            {items.map((title, i) => (
+                              <li
+                                key={i}
+                                className='catalog__accordion__list__item'
+                              >
+                                <Link
+                                  href='/catalog'
+                                  className='nav-menu__accordion__item__list__item__link'
+                                >
+                                  {title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </Accordion>
                       )}
                     </motion.li>
                   )
