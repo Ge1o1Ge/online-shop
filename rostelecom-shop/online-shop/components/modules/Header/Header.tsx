@@ -6,6 +6,7 @@ import Menu from './Menu'
 import { openMenu, openSearchModal } from '@/context/modals'
 import { addOverflowHiddenToBody } from '@/lib/utils/common'
 import { useLang } from '@/hooks/useLang'
+import CartPopup from './CartPopup/CartPopup'
 
 const Header = () => {
   const { lang, translations } = useLang()
@@ -45,19 +46,16 @@ const Header = () => {
           </li>
           <li className='header__links__item'>
             <Link
-              href='/favorites'
+              href='/comparison'
               className='header__links__item__btn header__links__item__btn--compare'
             />
           </li>
           <li className='header__links__item'>
-            <Link
-              href='/favorites'
-              className='header__links__item__btn header__links__item__btn--cart'
-            />
+            <CartPopup />
           </li>
           <li className='header__links__item'>
             <Link
-              href='/favorites'
+              href='/profile'
               className='header__links__item__btn header__links__item__btn--profile'
             />
           </li>

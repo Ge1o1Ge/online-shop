@@ -1,6 +1,6 @@
 'use client'
 
-import { useStore } from 'effector-react'
+import { useUnit } from 'effector-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import Header from './Header'
@@ -16,7 +16,7 @@ import Accordion from '../Accordion/Accordion'
 import Link from 'next/link'
 
 const CatalogMenu = () => {
-  const catalogMenuIsOpen = useStore($catalogIsOpen)
+  const catalogMenuIsOpen = useUnit($catalogIsOpen)
   const [showClothList, setShowClothList] = useState(false)
   const [showAccessoriesList, setShowAccessoriesList] = useState(false)
   const [showSouvenirsList, setShowSouvenirsList] = useState(false)
