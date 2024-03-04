@@ -6,7 +6,7 @@ import Menu from './Menu'
 import { openMenu, openSearchModal } from '@/context/modals'
 import { addOverflowHiddenToBody } from '@/lib/utils/common'
 import { useLang } from '@/hooks/useLang'
-import CartPopup from './CartPopup/CartPopup'
+import CartPopup from '../CartPopup/CartPopup'
 
 const Header = () => {
   const { lang, translations } = useLang()

@@ -46,7 +46,6 @@ const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
                 </div>
                 <Link href='/order' className='cart-popup__footer__link'>
                   {translations[lang].breadcrumbs.order}
-                  ава
                 </Link>
               </div>
             </motion.div>
