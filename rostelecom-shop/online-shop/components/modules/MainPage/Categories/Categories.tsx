@@ -12,6 +12,8 @@ import img4 from '@/public/img/categories-img-4.png'
 import styles from '@/styles/main-page/index.module.scss'
 import MainSlider from '../MainSlider'
 
+//Mongo DB
+
 const Categories = () => {
   const { lang, translations } = useLang()
   const isMedia490 = useMediaQuery(490)
