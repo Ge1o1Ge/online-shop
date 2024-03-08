@@ -59,7 +59,17 @@ module.exports = {
         const type = clothTypes[Math.floor(Math.random() * clothTypes.length)]
         const characteristics = {
           type: 't-shirts',
+          color: getRandomArrayValue(colors),
+          collar: getRandomArrayValue(collars),
+          silhouette: 'straight',
+          print: 'chocolate, print, melange',
+          decor: faker.datatype.boolean(),
+          composition: getRandomArrayValue(compositions),
+          season: getRandomArrayValue(seasons),
+          collection:
+            collections[Math.floor(Math.random() * collections.length)],
         }
+        
       }),
     ])
   },
