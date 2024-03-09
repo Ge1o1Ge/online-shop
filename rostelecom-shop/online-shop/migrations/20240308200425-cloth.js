@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { faker } = require('@faker-js/faker')
 
 const getRandomArrayValue = (arr) => arr[Math.floor(Math.random() * arr.length)]
@@ -53,25 +53,95 @@ const upperMaterials = [
 const liningMaterials = ['taffeta', 'viscose', 'polyester', 'chiffon', 'satin']
 
 module.exports = {
-  async up(db, client) {
-    return db.collection('cloth').insertMany([
-      ...Array(50).map(() => {
+  async up(db) {
+    return db.collection('cloth').insertMany(
+      [...Array(50)].map(() => {
         const type = clothTypes[Math.floor(Math.random() * clothTypes.length)]
-        const characteristics = {
-          type: 't-shirts',
-          color: getRandomArrayValue(colors),
-          collar: getRandomArrayValue(collars),
-          silhouette: 'straight',
-          print: 'chocolate, print, melange',
-          decor: faker.datatype.boolean(),
-          composition: getRandomArrayValue(compositions),
-          season: getRandomArrayValue(seasons),
-          collection:
-            collections[Math.floor(Math.random() * collections.length)],
+        const characteristics = [
+          {
+            type: 't-shirts',
+            color: getRandomArrayValue(colors),
+            collar: getRandomArrayValue(collars),
+            silhouette: 'straight',
+            print: 'chocolate, print, melange',
+            decor: faker.datatype.boolean(),
+            composition: getRandomArrayValue(compositions),
+            season: getRandomArrayValue(seasons),
+            collection:
+              collections[Math.floor(Math.random() * collections.length)],
+          },
+          {
+            type: 'long-sleeves',
+            color: getRandomArrayValue(colors),
+            collar: getRandomArrayValue(collars),
+            silhouette: 'straight',
+            print: 'chocolate, print, melange',
+            decor: faker.datatype.boolean(),
+            composition: getRandomArrayValue(compositions),
+            features: getRandomArrayValue(features),
+            fabricType: getRandomArrayValue(fabricTypes),
+            sleeve: getRandomArrayValue(sleeves),
+            season: getRandomArrayValue(seasons),
+            collection:
+              collections[Math.floor(Math.random() * collections.length)],
+          },
+          {
+            type: 'hoodie',
+            color: getRandomArrayValue(colors),
+            collar: getRandomArrayValue(collars),
+            silhouette: 'straight',
+            print: 'chocolate, print, melange',
+            decor: faker.datatype.boolean(),
+            composition: getRandomArrayValue(compositions),
+            features: getRandomArrayValue(features),
+            fabricType: getRandomArrayValue(fabricTypes),
+            sleeve: getRandomArrayValue(sleeves),
+            clasp: faker.datatype.boolean(),
+            season: getRandomArrayValue(seasons),
+          },
+          {
+            type: 'outerwear',
+            color: getRandomArrayValue(colors),
+            collar: getRandomArrayValue(collars),
+            decor: faker.datatype.boolean(),
+            composition: getRandomArrayValue(compositions),
+            features: getRandomArrayValue(features),
+            upperMaterial: getRandomArrayValue(upperMaterials),
+            liningMaterial: getRandomArrayValue(liningMaterials),
+            collection:
+              collections[Math.floor(Math.random() * collections.length)],
+          },
+        ]
+        const currentCharacteristics = characteristics.find(
+          (item) => item.type === type
+        )
+
+        return {
+          category: 'cloth',
+          type,
+          price: +faker.string.numeric(4).replace(/.{0,2}$/, 99),
+          name: faker.lorem.sentence(2),
+          description: faker.lorem.sentences(10),
+          characteristics: currentCharacteristics,
+          images:
+            type === 't-shirts' && currentCharacteristics.collection === 'line'
+              ? [getRandomArrayValue(lineImages)]
+              : images.filter((item) => item.includes(type)),
+          vendorCode: faker.string.numeric(4),
+          inStock: faker.string.numeric(2),
+          isBestseller: faker.datatype.boolean(),
+          isNew: faker.datatype.boolean(),
+          popularity: +faker.string.numeric(3),
+          sizes: {
+            s: faker.datatype.boolean(),
+            l: faker.datatype.boolean(),
+            m: faker.datatype.boolean(),
+            xl: faker.datatype.boolean(),
+            xxl: faker.datatype.boolean(),
+          },
         }
-        
-      }),
-    ])
+      })
+    )
   },
 
   async down(db) {
