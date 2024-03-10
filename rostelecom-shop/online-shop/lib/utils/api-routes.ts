@@ -17,7 +17,7 @@ export const getDbAndReqBody = async (
 
 export const getNewAndBestsellerGoods = async (db: Db, fieldName: string) => {
   const clothes = await db.collection('cloth').find().toArray()
-  const accessoires = await db.collection('accessoires').find().toArray()
+  const accessories = await db.collection('accessories').find().toArray()
 
   return shuffle([
     ...clothes
@@ -26,7 +26,7 @@ export const getNewAndBestsellerGoods = async (db: Db, fieldName: string) => {
           item[fieldName] && Object.values(item.sizes).some((value) => value)
       )
       .slice(0, 2),
-    ...accessoires
+    ...accessories
       .filter(
         (item) =>
           item[fieldName] && Object.values(item.sizes).some((value) => value)
