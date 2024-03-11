@@ -2,20 +2,21 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow } from 'swiper/modules'
 import { Swiper as SwiperType } from 'swiper/types'
-import 'swiper/css'
-import 'swiper/css/effect-coverflow'
 
 import { useLang } from '@/hooks/useLang'
 import img1 from '@/public/img/black-t.png'
 import img2 from '@/public/img/violet-t.png'
 import img3 from '@/public/img/orange-t.png'
 import HeroSlide from './HeroSlide'
+import ProductSubtitle from '@/components/elements/ProductSubtitle'
+
+import 'swiper/css'
+import 'swiper/css/effect-coverflow'
 import styles from '@/styles/main-page/index.module.scss'
 import stylesForAd from '@/styles/ad/index.module.scss'
 
 const Hero = () => {
   const { lang, translations } = useLang()
-  const descriptionsSlicePosition = lang === 'ru' ? 5 : 2
 
   const slides = [
     {
@@ -68,21 +69,7 @@ const Hero = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className={styles.hero__subtitle}>
-          <div className={styles.hero__subtitle__rect} />
-          <span>
-            {translations[lang].main_page.hero_description.slice(
-              0,
-              descriptionsSlicePosition
-            )}
-          </span>
-          <br />
-          <span>
-            {translations[lang].main_page.hero_description.slice(
-              descriptionsSlicePosition
-            )}
-          </span>
-        </div>
+        <ProductSubtitle />
         <h2 className={styles.hero__title}>
           <span
             className={`${styles.hero__title__subtitle} ${lang === 'ru' ? '' : styles.hero__title__subtitle_lang}`}
