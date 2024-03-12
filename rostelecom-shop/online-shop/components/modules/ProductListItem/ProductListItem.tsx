@@ -9,6 +9,7 @@ import styles from '@/styles/product-list-item/index.module.scss'
 import stylesForAd from '@/styles/ad/index.module.scss'
 import { formatPrice } from '@/lib/utils/common'
 import ProductLabel from './ProductLabel'
+import ProductItemActionBtn from '@/components/elements/ProductItemActionBtn'
 
 const ProductListItem = ({ item, title }: IProductListItem) => {
   const { lang, translations } = useLang()
@@ -63,6 +64,26 @@ const ProductListItem = ({ item, title }: IProductListItem) => {
           ) : (
             <ProductLabel isBestseller={item.isBestseller} isNew={item.isNew} />
           )}
+          <div className={styles.list__item__actions}>
+            <ProductItemActionBtn
+              text={translations[lang].product.add_to_favorites}
+              iconClass='action__btn_favorite'
+            />
+            <ProductItemActionBtn
+              text={translations[lang].product.add_to_comparison}
+              iconClass='action__btn_comparison'
+            />
+            <ProductItemActionBtn
+              text={translations[lang].product.quick_view}
+              iconClass='action__btn_quick_view'
+            />
+          </div>
+          <Link
+            href={`/catalog/${item.category}/${item._id}`}
+            className={styles.list__item__img}
+          >
+            <Image src={item.images[0]} alt={item.name} />
+          </Link>
         </li>
       )}
     </>
