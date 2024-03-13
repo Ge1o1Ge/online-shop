@@ -11,6 +11,7 @@ const ProductItemActionBtn = ({
   callback,
   iconClass,
   withTooltip = true,
+  marginBottom,
 }: IProductItemActionBtn) => {
   const [open, setOpen] = useState(false)
   const [tooltipLeft, setTooltipLeft] = useState(0)
@@ -32,6 +33,7 @@ const ProductItemActionBtn = ({
         onClick={callback}
         onMouseEnter={showTooltip}
         onMouseLeave={hideTooltip}
+        style={{ marginBottom: marginBottom || 16 }}
       />
       {withTooltip && (
         <AnimatePresence>

@@ -8,6 +8,7 @@ export interface IProductItemActionBtn {
   callback?: VoidFunction
   iconClass: string
   withTooltip?: boolean
+  marginBottom?: number
 }
 
 export interface IProductAvaliable {

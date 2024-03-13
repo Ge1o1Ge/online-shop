@@ -10,6 +10,7 @@ import stylesForAd from '@/styles/ad/index.module.scss'
 import { formatPrice } from '@/lib/utils/common'
 import ProductLabel from './ProductLabel'
 import ProductItemActionBtn from '@/components/elements/ProductItemActionBtn'
+import ProductAvaliable from '@/components/elements/ProductAvaliable'
 
 const ProductListItem = ({ item, title }: IProductListItem) => {
   const { lang, translations } = useLang()
@@ -31,7 +32,12 @@ const ProductListItem = ({ item, title }: IProductListItem) => {
               subtitleRectClassName={styles.list__item_ad__subtitle__rect}
             />
             <div className={styles.list__item_ad__img}>
-              <Image src={item.images[0]} alt={item.name} />
+              <Image
+                src={item.images[0]}
+                alt={item.name}
+                fill
+                objectFit='contain'
+              />
             </div>
             <p className={styles.list__item_ad__title}>
               <span>
@@ -44,7 +50,7 @@ const ProductListItem = ({ item, title }: IProductListItem) => {
                   ]
                 }
               </span>
-              <span>{formatPrice(+item.price)} Р</span>
+              <span>{formatPrice(+item.price)} ₽</span>
             </p>
           </Link>
         </li>
@@ -67,23 +73,45 @@ const ProductListItem = ({ item, title }: IProductListItem) => {
           <div className={styles.list__item__actions}>
             <ProductItemActionBtn
               text={translations[lang].product.add_to_favorites}
-              iconClass='action__btn_favorite'
+              iconClass='actions__btn_favorite'
             />
             <ProductItemActionBtn
               text={translations[lang].product.add_to_comparison}
-              iconClass='action__btn_comparison'
+              iconClass='actions__btn_comparison'
             />
             <ProductItemActionBtn
               text={translations[lang].product.quick_view}
-              iconClass='action__btn_quick_view'
+              iconClass='actions__btn_quick_view'
             />
           </div>
           <Link
             href={`/catalog/${item.category}/${item._id}`}
             className={styles.list__item__img}
           >
-            <Image src={item.images[0]} alt={item.name} />
+            <Image
+              src={item.images[0]}
+              alt={item.name}
+              fill
+              objectFit='contain'
+            />
           </Link>
+          <div className={styles.list__item__inner}>
+            <h3 className={styles.list__item__title}>
+              <Link href={`/catalog/${item.category}/${item._id}`}>
+                {item.name}
+              </Link>
+            </h3>
+            <ProductAvaliable
+              vendorCode={item.vendorCode}
+              inStock={+item.inStock}
+            />
+            <span className={styles.list__item__price}>
+              {formatPrice(+item.price)} ₽
+            </span>
+          </div>
+          <button className={`btn-reset ${styles.list__item__cart}`}>
+            {translations[lang].product.to_cart}
+          </button>
         </li>
       )}
     </>
