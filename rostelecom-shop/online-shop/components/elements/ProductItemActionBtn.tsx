@@ -6,8 +6,6 @@ import Toolitip from './Toolitip'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { IProductItemActionBtn } from '@/types/elements'
 
-// ааа
-
 const ProductItemActionBtn = ({
   text,
   callback,
