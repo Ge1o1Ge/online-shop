@@ -11,9 +11,11 @@ import { formatPrice } from '@/lib/utils/common'
 import ProductLabel from './ProductLabel'
 import ProductItemActionBtn from '@/components/elements/ProductItemActionBtn'
 import ProductAvaliable from '@/components/elements/ProductAvaliable'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 const ProductListItem = ({ item, title }: IProductListItem) => {
   const { lang, translations } = useLang()
+  const isMedia800 = useMediaQuery(800)
   const isTitleForNew = title === translations[lang].main_page.new_title
 
   return (
@@ -79,10 +81,12 @@ const ProductListItem = ({ item, title }: IProductListItem) => {
               text={translations[lang].product.add_to_comparison}
               iconClass='actions__btn_comparison'
             />
-            <ProductItemActionBtn
-              text={translations[lang].product.quick_view}
-              iconClass='actions__btn_quick_view'
-            />
+            {!isMedia800 && (
+              <ProductItemActionBtn
+                text={translations[lang].product.quick_view}
+                iconClass='actions__btn_quick_view'
+              />
+            )}
           </div>
           <Link
             href={`/catalog/${item.category}/${item._id}`}
