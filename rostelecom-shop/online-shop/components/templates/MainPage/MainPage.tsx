@@ -6,6 +6,8 @@ import NewGoods from '@/components/modules/MainPage/NewGoods'
 import { MainPageGate } from '@/context/goods'
 import { useGate } from 'effector-react'
 
+//пррп
+
 const MainPage = () => {
   useGate(MainPageGate)
 
