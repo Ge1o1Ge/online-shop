@@ -8,6 +8,8 @@ export const openCatalogMenu = modals.createEvent()
 export const closeCatalogMenu = modals.createEvent()
 export const openSearchModal = modals.createEvent()
 export const closeSearchModal = modals.createEvent()
+export const openQickViewModal = modals.createEvent()
+export const closeQickViewModal = modals.createEvent()
 
 export const $menuIsOpen = modals
   .createStore(false)
@@ -20,6 +22,11 @@ export const $catalogIsOpen = modals
   .on(closeCatalogMenu, () => false)
 
 export const $SearchModal = modals
+  .createStore(false)
+  .on(openSearchModal, () => true)
+  .on(closeSearchModal, () => false)
+
+export const $QickViewModal = modals
   .createStore(false)
   .on(openSearchModal, () => true)
   .on(closeSearchModal, () => false)
