@@ -21,6 +21,4 @@ const MainPage = () => {
   )
 }
 
-//ааааа
-
 export default MainPage
